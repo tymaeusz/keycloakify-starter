@@ -1,0 +1,1165 @@
+/* =========================================================
+   IMPORTAÇÃO DA FONTE
+   ========================================================= */
+@import url('./fonts.css');
+
+/* =========================================================
+   CORREÇÃO DO FUNDO (FIX DA BARRA BRANCA)
+   ========================================================= */
+
+/* 1. Garante que o elemento raiz também tenha a cor de fundo */
+html {
+    height: 100%;
+    background-color: #00222b;
+}
+
+/* 2. Garante altura mínima da viewport e reseta margens */
+body {
+    min-height: 100vh;
+    margin: 0;
+    font-family: "Lilex", sans-serif !important;
+}
+
+.kcFormHeaderClass,
+.kcFormHeaderClass h1,
+.kcFormHeaderClass span {
+    font-family: "Lilex", sans-serif !important;
+    font-weight: 700 !important;
+    font-style: normal !important;
+}
+
+/* Aplica fonte aos inputs e botões */
+input, button, select, textarea, .kcLoginWrapperClass {
+    font-family: "Lilex", sans-serif !important;
+}
+
+
+/* =========================================================
+   LAYOUT BASE
+   ========================================================= */
+.kcLoginWrapperClass {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box; /* Importante para o padding não estourar */
+}
+
+/* 3. BACKGROUND DESKTOP CORRIGIDO 
+   Usa 'fixed' e 'cover' para impedir que a imagem acabe ao rolar ou dar zoom 
+*/
+body.kcBodyClass {
+    background-image: url('./assets/background.svg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;       /* Cobre toda a tela */
+    background-attachment: fixed; /* Fixa a imagem na janela */
+    background-color: #00222b;
+}
+
+
+/* Mobile */
+@media (max-width: 768px) {
+    body.kcBodyClass {
+        background-image: url('./assets/background-mobile.svg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center top;
+        background-attachment: scroll; /* Em mobile, scroll costuma funcionar melhor que fixed */
+        background-color: #00222b;
+    }
+}
+
+
+/* =========================================================
+   CARD (Glassmorphism refinado)
+   ========================================================= */
+
+
+
+.login-pf,
+.login-pf-page,
+#kc-content,
+#kc-content-wrapper {
+    width: 100%;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center !important;
+}
+
+.kcFormCardClass {
+    width: 100%;
+    max-width: 430px;
+
+    /* Mantém centralizado, sem empurrar o fundo */
+    margin: 0 auto;
+
+    /* padding equilibrado */
+    padding: 42px 38px;
+
+    border-radius: 28px;
+
+    background: rgba(255, 255, 255, 0.13);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.38);
+
+    position: relative;
+    animation: fadeIn 0.55s ease-out forwards;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   ANIMAÇÃO
+   ========================================================= */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+.kcFormHeaderClass {
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+    color: #ffffff;
+    font-weight: bold!important;
+    margin-bottom: 26px;
+    line-height: 1.25;
+
+    letter-spacing: 0.7px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.45);
+}
+
+#kc-header,
+#kc-header-wrapper,
+.kcHeaderClass,
+.kcHeaderWrapperClass {
+    width: 100%;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+}
+
+@media (max-width: 600px) {
+    .kcFormCardClass {
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+}
+
+.kcButtonLargeClass  {
+
+    margin-left: 0!important;
+}
+/* -------------------------------------------------------------------- */
+/* 1. POSICIONAMENTO E CONTAINER (kcLocaleDropDownClass) */
+/* -------------------------------------------------------------------- */
+
+.kcLocaleDropDownClass {
+    /* REMOVIDO: position: absolute, top, right
+       Isso garante que o botão fique na posição original (fluxo normal do documento) */
+    position: relative; /* Necessário para que a lista suspensa (UL) seja posicionada em relação a este container */
+    z-index: 30;
+    
+    /* Configura o container para ser um ponto de referência para a lista suspensa */
+    display: inline-block;
+}
+
+/* -------------------------------------------------------------------- */
+/* 2. BOTÃO DE IDIOMA (Substitui o <select> visualmente) */
+/* -------------------------------------------------------------------- */
+
+/* #kc-locale-dropdown é o pai do botão e da lista. Aplicamos o estilo visual ao <button> */
+#kc-locale-dropdown button {
+    /* --- Styles movidos do :select --- */
+    appearance: none;
+    cursor: pointer;
+
+    padding: 9px 36px 9px 12px;
+    font-size: 13px;
+    font-weight: 600;
+
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+
+    /* --- Glassmorphism --- */
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+    
+    color: #ffffff !important; /* Cor branca garantida */
+    
+    outline: none;
+    transition: all 0.25s;
+    
+    /* Faz o botão parecer um campo de entrada */
+    text-align: left;
+    white-space: nowrap;
+    width: 100%;
+    
+    /* Seta customizada para indicar dropdown (opcional) */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><path fill="%23ffffff" d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.744 3.894-3.744c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615l-4.708 4.547c-0.245 0.23-0.579 0.345-0.912 0.345s-0.667-0.115-0.912-0.345l-4.706-4.547c-0.408-0.418-0.436-1.17 0-1.615z"></path></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+}
+
+
+/* -------------------------------------------------------------------- */
+/* 3. EFEITOS DE HOVER (Aplicados ao <button>) */
+/* -------------------------------------------------------------------- */
+
+#kc-locale-dropdown button:hover {
+    background: rgba(255, 255, 255, 0.22);
+    border-color: rgba(0, 255, 255, 0.55);
+    box-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
+}
+
+/* -------------------------------------------------------------------- */
+/* 4. ESTILOS DA LISTA SUSPENSA (UL e Links) */
+/* -------------------------------------------------------------------- */
+
+.kcLocaleDropDownClass .kcLocaleListClass { /* Target the <ul> element */
+    position: absolute!important;
+    top: 100%!important; /* Posiciona a lista abaixo do botão */
+    /* right: 0; */ /* Removido para alinhar a lista à esquerda do botão */
+    left: 0!important; /* Adicionado para alinhar a lista ao lado esquerdo do botão (pode ser ajustado) */
+    margin-top: 8px!important; /* Pequeno espaçamento */
+    min-width: 100%!important;
+    
+    list-style: none!important;
+    padding: 0!important;
+    margin: 0!important;
+
+    /* CORREÇÃO APLICADA AQUI: Fundo mais escuro/opaco para garantir contraste */
+    background-color: #00222b!important; /* Fundo quase sólido para alto contraste */
+    backdrop-filter: blur(5px)!important; /* Reduzindo o blur para evitar que o fundo subjacente clareie muito */
+    border-radius: 12px!important;
+    border: 1px solid rgba(255, 255, 255, 0.2)!important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.8)!important; /* Aumentando a sombra para dar profundidade */
+
+    /* Ocultar a lista inicialmente (o Keycloak gerencia a visibilidade com JS/classes) */
+    /* Este estilo base é para quando a lista estiver visível */
+}
+
+/* Estilo para os itens da lista (Links) */
+.kcLocaleDropDownClass .kcLocaleListItemClass a { 
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #ffffff !important; /* Texto branco */
+    font-size: 13px;
+    transition: background-color 0.2s;
+}
+
+.kcLocaleDropDownClass .kcLocaleListItemClass a:hover {
+    background-color: rgba(0, 255, 255, 0.2); /* Aumentei um pouco a opacidade do hover para destacar mais */
+    border-radius: 8px; /* Borda arredondada nos itens */
+}
+/* =========================================================
+   INPUTS
+   ========================================================= */
+
+   button#kc-current-locale-link::after {
+
+    display: none;
+}
+.kcInputClass {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 12px;
+
+    border: none;
+    outline: none;
+    margin-bottom: 16px;
+
+    font-size: 15px;
+
+    transition: all 0.25s;
+}
+
+
+.kcLabelClass {
+    color: #ffffff !important;
+    margin-bottom: 3px;
+    display: block;
+}
+
+.kcFormSocialAccountSectionClass , .checkbox span{
+
+    color: #ffffff !important;
+    margin-bottom: 3px;
+    margin-top: 10px;
+    display: block;
+}
+
+
+/* Placeholder melhorado */
+.kcInputClass::placeholder {
+    color: rgba(0, 0, 0, 0.45);
+}
+
+.kcInputClass:focus {
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(0, 255, 255, 0.32);
+}
+
+
+/* =========================================================
+   CAMPO DE SENHA (ícone corrigido + espaçamento)
+   ========================================================= */
+input[type="password"] {
+    padding-right: 42px !important;
+}
+
+div.password-icon,
+div.password-toggle,
+input + .password-toggle,
+input + .kcPasswordVisibilityToggleClass {
+    right: 10px !important;
+    opacity: 0.85;
+}
+
+
+/* =========================================================
+   CHECKBOX (alinhado)
+   ========================================================= */
+#kc-form-options {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center !important;
+    margin-top: 8px;
+}
+
+#kc-form-options label {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    color: #d8faff !important;
+}
+
+
+/* =========================================================
+   BOTÃO
+   ========================================================= */
+  
+.kcButtonClass {
+    padding: 12px 20px;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+
+    color: #ffffff;
+    background: linear-gradient(45deg, #00ffff, #00222b);
+
+    border: none;
+    border-radius: 24px;
+    cursor: pointer;
+
+    width: 100%;
+    margin-top: 12px;
+
+    transition: transform 0.25s, box-shadow 0.25s, opacity 0.3s;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.28);
+}
+
+
+ .kcButtonClass:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 
+        0 0 8px rgba(0, 255, 255, 0.7),
+        0 0 16px rgba(0, 255, 255, 0.5),
+        0 0 28px rgba(0, 255, 255, 0.35),
+        0 8px 20px rgba(0, 0, 0, 0.35); /* sombra inferior original */
+}
+
+
+.kcButtonClass:active {
+    transform: scale(0.97);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+}
+
+.kcButtonClass:disabled {
+    color: #ffffff;
+    background: linear-gradient(45deg, #6f8b8b, #3d4b4d);
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+
+/* =========================================================
+   LINKS
+   ========================================================= */
+.kcLinkClass {
+    text-align: center;
+    margin-top: 14px;
+
+    color: #c9f7ff;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+
+.kcLinkClass:hover {
+    color: #00ffff;
+    text-shadow: 0 0 6px #00ffff, 0 0 12px #00ffff!important;
+}
+
+
+/* =========================================================
+   INFO AREA (transparente de verdade)
+   ========================================================= */
+.kcLoginWrapperClass > .kcInfoAreaWrapperClass {
+    display: none !important;
+}
+
+.kcFormCardClass .kcInfoAreaWrapperClass {
+    display: block !important;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#kc-info-wrapper,
+#kc-info-wrapper * {
+    background: transparent !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    color: #e0faff !important;
+}
+
+
+/* =========================================================
+   RESPONSIVIDADE
+   ========================================================= */
+@media (max-width: 480px) {
+    .kcFormCardClass {
+        padding: 32px 26px;
+        border-radius: 22px;
+    }
+
+    .kcFormHeaderClass {
+        font-size: 24px;
+    }
+
+    .kcLocaleDropDownClass select {
+        font-size: 12px;
+    }
+}
+.kcFormOptionsWrapperClass span {
+   
+    transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+.kcFormOptionsWrapperClass a {
+    color: #00ffff !important;
+}
+
+
+.kcFormOptionsWrapperClass span[data-kc-msg="doForgotPassword"]:hover,
+.kcFormOptionsWrapperClass span[data-kc-msg="doForgotPassword"]:focus {
+
+        color: #00ffff!important;
+    text-shadow: 0 0 6px #00ffff, 0 0 12px #00ffff!important;
+
+}
+
+.kcFormGroupClass span[data-kc-msg="backToLogin"]:hover,
+.kcFormGroupClass span[data-kc-msg="backToLogin"]:focus {
+    color: #00ffff;
+    text-shadow: 0 0 6px #00ffff, 0 0 12px #00ffff;
+}
+
+
+#kc-registration span a span:hover,
+#kc-registration span a span:focus {
+    color: #66ffff;
+    text-shadow: 0 0 6px #00ffff, 0 0 12px #00ffff;
+}
+
+
+#kc-registration span a span {
+    color: #00ffff !important;
+    transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+#kc-registration span a span:hover,
+#kc-registration span a span:focus {
+    color: #66ffff !important;
+    text-shadow: 0 0 6px #00ffff, 0 0 12px #00ffff;
+}
+
+
+.kcFormOptionsWrapperClass{
+   
+     margin-top: 20px !important;
+}
+
+
+
+/* =========================================================
+   FIX REAL DO PATTERNFLY PARA O PASSWORD INPUT GROUP
+   ========================================================= */
+
+/* Zera o layout flex imposto pelo PatternFly */
+.kcInputGroup.pf-c-input-group {
+    display: block !important;
+    position: relative !important;
+    width: 100%;
+    gap: 0 !important;
+    border: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+}
+
+/* Remove COMPLETAMENTE qualquer estilo PatternFly do botão */
+.kcInputGroup {
+    position: relative;
+    width: 100%;
+}
+
+/* Input mantém o mesmo estilo do email */
+.kcInputGroup .kcInputClass {
+    width: 100%;
+    padding: 12px 14px;
+    padding-right: 44px !important; /* espaço pro ícone */
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.88);
+    border: none;
+    outline: none;
+}
+.kcInputGroup .kcFormPasswordVisibilityButtonClass {
+    position: absolute !important;
+    top: 35% !important;
+    right: 12px !important;
+
+    transform: translateY(-50%) !important;
+
+    /* Reset total dos estilos do PatternFly */
+    height: 24px !important;
+    width: 24px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    line-height: 0 !important;
+    min-height: 0 !important;
+    min-width: 0 !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    border: none !important;
+
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+
+    cursor: pointer;
+    opacity: 0.85;
+}
+
+/* Ícone */
+.kcInputGroup .kcFormPasswordVisibilityButtonClass i {
+    font-size: 18px;
+    color: #000;
+    margin: 0;
+    padding: 0;
+}
+
+/* Hover */
+.kcInputGroup .kcFormPasswordVisibilityButtonClass:hover {
+    opacity: 1;
+    filter: drop-shadow(0 0 6px #00ffff);
+}
+
+/* Input igual ao de e-mail */
+.kcInputGroup.pf-c-input-group .kcInputClass {
+    width: 100% !important;
+
+    padding: 12px 14px !important;
+    padding-right: 48px !important; /* espaço pro olho */
+
+    border-radius: 12px !important;
+    border: none !important;
+
+    background: rgba(255, 255, 255, 0.88) !important;
+
+    outline: none !important;
+    transition: all 0.25s !important;
+}
+
+/* Foco igual ao campo de email */
+.kcInputGroup.pf-c-input-group .kcInputClass:focus {
+    background: #ffffff !important;
+    box-shadow: 0 0 0 3px rgba(0, 255, 255, 0.32) !important;
+}
+
+
+/* ----- GRID DOS IDPs (DUAS COLUNAS) ----- */
+.kcFormSocialAccountListClass,
+.kcFormSocialAccountListGridClass,
+.kc-social-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* ----- BOTÕES ----- */
+/* ===== BOTÕES SOCIAIS IGUAIS AO LOGIN ===== */
+.kcFormSocialAccountListButtonClass {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+
+    width: 100%;
+    padding: 12px 20px !important;
+
+    background: linear-gradient(45deg, #00ffff, #00222b) !important;
+    color: #ffffff !important;
+
+    font-family: "Lilex", sans-serif !important;
+    font-size: 17px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.8px !important;
+    text-decoration: none !important;
+
+    border: none !important;
+    border-radius: 24px !important;
+    cursor: pointer !important;
+
+    transition: transform 0.25s, box-shadow 0.25s, opacity 0.3s !important;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.28) !important;
+}
+
+/* ===== HOVER (igual ao botão de login) ===== */
+.kcFormSocialAccountListButtonClass:hover {
+    transform: translateY(-3px) scale(1.02) !important;
+    box-shadow:
+        0 0 8px rgba(0, 255, 255, 0.7),
+        0 0 16px rgba(0, 255, 255, 0.5),
+        0 0 28px rgba(0, 255, 255, 0.35),
+        0 8px 20px rgba(0, 0, 0, 0.35) !important;
+}
+
+/* ===== ACTIVE ===== */
+.kcFormSocialAccountListButtonClass:active {
+    transform: scale(0.97) !important;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.25) !important;
+}
+
+/* ===== DISABLED ===== */
+.kcFormSocialAccountListButtonClass:disabled {
+    background: linear-gradient(45deg, #6f8b8b, #3d4b4d) !important;
+    opacity: 0.55 !important;
+    cursor: not-allowed !important;
+}
+
+/* Ícone */
+.kcFormSocialAccountListButtonClass i {
+    font-size: 20px !important;
+    opacity: 0.9 !important;
+    color: #fff !important;
+    margin-right:5px;
+}
+
+/* Nome do provedor */
+.kcFormSocialAccountNameClass {
+    font-size: 17px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.8px !important;
+    color: #fff !important;
+}
+
+/* Botões em uma coluna no mobile */
+@media (max-width: 480px) {
+    .kcFormSocialAccountListClass,
+    .kcFormSocialAccountListGridClass,
+    .kc-social-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* Remove Outline nativo do PF */
+.pf-c-button:after {
+    border: none !important;
+}
+
+/* =========================================================
+   LOGIN ERROR 
+   ========================================================= */
+
+.kcInputErrorMessageClass {
+    color: #eb2899 !important;
+    font-weight: bold !important;
+    font-size: 10px !important;
+    text-shadow:
+        0 0 6px rgba(235, 40, 153, 0.75),
+        0 0 12px rgba(235, 40, 153, 0.55),
+        0 0 24px rgba(235, 40, 153, 0.35);
+    transition: text-shadow 0.25s ease;
+}
+
+/* Glow mais forte no hover */
+.kcInputErrorMessageClass:hover {
+    text-shadow:
+        0 0 8px rgba(235, 40, 153, 0.9),
+        0 0 16px rgba(235, 40, 153, 0.75),
+        0 0 32px rgba(235, 40, 153, 0.5)!important;
+}
+
+
+/* =========================================================
+   ALERTAS
+   ========================================================= */
+/* -------------------------------------------------------------------- */
+/* --- 1. CLASSE BASE: kcAlertClass e .alert (Contém todos os estilos comuns) --- */
+/* -------------------------------------------------------------------- */
+
+.alert {
+
+margin-top: px; 
+margin-bottom: 30px;
+
+}
+.kcAlertClass, .alert {
+    /* --- Efeitos Visuais Comuns (Glassmorphism) --- */
+    background: rgba(255, 255, 255, 0.06) !important;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-radius: 14px !important;
+
+    /* --- Layout e Espaçamento Comuns --- */
+    margin-top: 50px;
+    padding: 14px 18px !important;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    /* --- Texto Comum --- */
+    color: #fff !important;
+    font-size: 14px; /* Adicionado para garantir o tamanho do texto do corpo */
+
+    /*
+     * As propriedades 'border' e 'box-shadow'
+     * serão sobrescritas nas classes específicas abaixo.
+     * O fallback é o estilo Roxo (Base/Exemplo)
+     */
+    border: 1px solid rgba(235, 40, 153, 0.35) !important;
+    box-shadow:
+        0 0 10px rgba(235, 40, 153, 0.25),
+        inset 0 0 10px rgba(235, 40, 153, 0.15);
+}
+
+/* --- Título Base (kcAlertTitleClass) --- */
+.kcAlertTitleClass {
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    
+    /* Sombra base (preta) comum a todos. A sombra de cor é sobrescrita. */
+    text-shadow: 0 0 4px rgba(0, 0, 0, 0.4); 
+}
+
+/* --- Ícone Base (.pf-c-alert__icon .fa) --- */
+.kcAlertClass .pf-c-alert__icon .fa, .alert .pf-c-alert__icon .fa {
+    font-size: 18px;
+    
+    /* Fallback Roxo */
+    color: #eb2899 !important;
+    text-shadow:
+        0 0 6px rgba(235, 40, 153, 0.75),
+        0 0 12px rgba(235, 40, 153, 0.55);
+}
+
+
+/* -------------------------------------------------------------------- */
+/* --- 2. ESTILOS ESPECÍFICOS: Apenas Overrides de Cor (Borda/Sombra) --- */
+/* -------------------------------------------------------------------- */
+
+/* ==================================================================== */
+/* --- alert-success (Verde: #28eb6e | RGBA: 40, 235, 110) --- */
+/* ==================================================================== */
+.alert-success {
+    border: 1px solid rgba(40, 235, 110, 0.35) !important;
+    box-shadow:
+        0 0 10px rgba(40, 235, 110, 0.25),
+        inset 0 0 10px rgba(40, 235, 110, 0.15);
+}
+.alert-success .pf-c-alert__icon .fa {
+    color: #28eb6e !important;
+    text-shadow:
+        0 0 6px rgba(40, 235, 110, 0.75),
+        0 0 12px rgba(40, 235, 110, 0.55);
+}
+.alert-success .kcAlertTitleClass {
+    text-shadow: 
+        0 0 4px rgba(0, 0, 0, 0.4),
+        0 0 6px rgba(40, 235, 110, 0.35); /* Sombra Verde */
+}
+
+/* ==================================================================== */
+/* --- alert-error (Vermelho: #ff2828 | RGBA: 255, 40, 40) --- */
+/* ==================================================================== */
+.alert-error, .e {
+    border: 1px solid rgba(255, 40, 40, 0.35) !important;
+    box-shadow:
+        0 0 10px rgba(255, 40, 40, 0.25),
+        inset 0 0 10px rgba(255, 40, 40, 0.15);
+}
+.alert-error .pf-c-alert__icon .fa, .e .pf-c-alert__icon .fa {
+    color: #ff2828 !important;
+    text-shadow:
+        0 0 6px rgba(255, 40, 40, 0.75),
+        0 0 12px rgba(255, 40, 40, 0.55);
+}
+.alert-error .kcAlertTitleClass, .e .kcAlertTitleClass {
+    text-shadow: 
+        0 0 4px rgba(0, 0, 0, 0.4),
+        0 0 6px rgba(255, 40, 40, 0.35); /* Sombra Vermelha */
+}
+
+/* ==================================================================== */
+/* --- alert-info (Azul: #2899eb | RGBA: 40, 153, 235) --- */
+/* ==================================================================== */
+.alert-info {
+    border: 1px solid rgba(40, 153, 235, 0.35) !important;
+    box-shadow:
+        0 0 10px rgba(40, 153, 235, 0.25),
+        inset 0 0 10px rgba(40, 153, 235, 0.15);
+}
+.alert-info .pf-c-alert__icon .fa {
+    color: #2899eb !important;
+    text-shadow:
+        0 0 6px rgba(40, 153, 235, 0.75),
+        0 0 12px rgba(40, 153, 235, 0.55);
+}
+.alert-info .kcAlertTitleClass {
+    text-shadow: 
+        0 0 4px rgba(0, 0, 0, 0.4),
+        0 0 6px rgba(40, 153, 235, 0.35); /* Sombra Azul */
+}
+
+/* ==================================================================== */
+/* --- alert-warning (Amarelo: #f0c330 | RGBA: 240, 195, 48) --- */
+/* ==================================================================== */
+.alert-warning {
+    border: 1px solid rgba(240, 195, 48, 0.35) !important;
+    box-shadow:
+        0 0 10px rgba(240, 195, 48, 0.25),
+        inset 0 0 10px rgba(240, 195, 48, 0.15);
+}
+.alert-warning .pf-c-alert__icon .fa {
+    color: #f0c330 !important;
+    text-shadow:
+        0 0 6px rgba(240, 195, 48, 0.75),
+        0 0 12px rgba(240, 195, 48, 0.55);
+}
+.alert-warning .kcAlertTitleClass {
+    text-shadow: 
+        0 0 4px rgba(0, 0, 0, 0.4),
+        0 0 6px rgba(240, 195, 48, 0.35); /* Sombra Amarela */
+}
+/* Para evitar sobreposição no mobile */
+.kcContentWrapperClass {
+    display: block;
+    width: 100%;
+}
+
+
+.kcLabelWrapperClass {
+    display: flex;
+    flex-direction: row;      /* Horizontal */
+    align-items: center;      /* Vertically centered */
+    gap: 3px; 
+}
+.kcLabelWrapperClass:not(.subtitle) {
+    font-size: 0;
+}
+
+.kcLabelWrapperClass:not(.subtitle) * {
+    font-size: 12px; /* restaura conteúdo */
+}
+
+.kcLabelWrapperClass:not(.subtitle)::after {
+    content: "*";
+    font-size: 12px;
+
+    color: #eb2899 !important;
+    font-weight: bold !important;
+    text-shadow:
+        0 0 6px rgba(235, 40, 153, 0.75),
+        0 0 12px rgba(235, 40, 153, 0.55),
+        0 0 24px rgba(235, 40, 153, 0.35);
+}
+
+.kcContentWrapperClass {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Título primeiro */
+#kc-page-title {
+    order: 1;
+}
+
+
+/* Required fields depois */
+.kcLabelWrapperClass.subtitle {
+    order: 2;
+}
+
+.kcLabelWrapperClass.subtitle {
+    font-size: 14px !important;
+}
+
+.kcLabelWrapperClass:not(.subtitle) {
+    font-size: 0;
+}
+
+.kcLabelWrapperClass:not(.subtitle) * {
+    font-size: 12px;
+}
+
+.kcLabelWrapperClass:not(.subtitle)::after {
+    content: "*";
+    font-size: 12px;
+
+    color: #eb2899 !important;
+    font-weight: bold !important;
+
+    text-shadow:
+        0 0 6px rgba(235, 40, 153, 0.75),
+        0 0 12px rgba(235, 40, 153, 0.55),
+        0 0 24px rgba(235, 40, 153, 0.35);
+}
+
+
+/* ================================
+   AQUI: deixa o * do Required Fields
+   igual ao dos demais
+   ================================ */
+.kcLabelWrapperClass.subtitle .required {
+    color: #eb2899 !important;
+    font-weight: bold !important;
+    margin-right: 2px;
+
+    text-shadow:
+        0 0 6px rgba(235, 40, 153, 0.75),
+        0 0 12px rgba(235, 40, 153, 0.55),
+        0 0 24px rgba(235, 40, 153, 0.35);
+
+    font-size: 12px !important;
+}
+
+.kcInputClassCheckbox  {
+
+    margin-top: 7px;
+    display: flex;            /* coloca os itens lado a lado */
+    gap: 6px;                 /* espaço entre checkbox e texto (ajuste opcional) */
+    align-items: flex-end;    /* alinha os elementos pela parte inferior */
+}
+
+.kcInputClassCheckboxLabel {
+    font-size: 14px ;
+    color: #ffffff ;
+}
+
+/* Estilo do container pai */
+.kcInputWrapperClass {
+    font-size: 14px;
+    color: #ffffff;
+    
+    /* Habilita o Flexbox para alinhar itens lado a lado */
+    display: flex;
+    align-items: center; /* Centraliza verticalmente */
+    gap: 5px; /* Adiciona um pequeno espaço entre o texto e o link */
+    flex-wrap: wrap; /* Permite quebrar a linha se necessário */
+}
+
+/* Estilo específico para a div do link */
+#kc-registration-terms-text {
+    font-size: 14px !important;
+    margin: 0; /* Garante que não haja margens externas atrapalhando */
+}
+
+/* Estilo do link */
+#kc-registration-terms-text a {
+    color: #00ffff !important;
+    text-decoration: none; /* Opcional: remove o sublinhado se desejar */
+}
+
+#kc-registration-terms-text a:hover,
+#kc-registration-terms-text a:focus {
+    color: #66ffff;
+    text-shadow: 0 0 6px #00ffff, 0 0 12px #00ffff;
+}
+
+
+/* --- RESPONSIVIDADE (MOBILE) --- */
+/* Quando a tela for menor que 768px (tablets e celulares) */
+@media (max-width: 768px) {
+    .kcInputWrapperClass {
+        flex-direction: column; /* Muda para coluna (um em cima do outro) */
+        align-items: flex-start; /* Alinha tudo à esquerda */
+    }
+    
+    /* Remove o espaçamento lateral e adiciona um pequeno espaçamento vertical se necessário */
+    #kc-registration-terms-text {
+        margin-top: 2px; 
+    }
+}
+
+
+.kcInputClassCheckbox {
+    margin-top: 7px;
+    display: flex;
+    gap: 6px;
+    align-items: flex-end;
+}
+
+
+
+
+#kc-terms-text span p{
+    color: #ffffff;
+    
+}
+
+
+
+
+.kcLabelWrapperClass span:hover,
+.kcLabelWrapperClass span:focus {
+    color: #ffffff;
+    text-shadow: 0 0 6px #00ffff, 0 0 12px #00ffff;
+}
+
+ 
+
+.kcFormGroupClass span:hover,
+.kcFormGroupClass span:focus {
+    color: #ffffff;
+    text-shadow: 0 0 6px #00ffff, 0 0 12px #00ffff;
+}
+
+
+#kc-info-message  a
+ {
+
+    color: #00ffff;
+}
+
+#kc-info-message:has(a) a:hover,
+#kc-info-message:has(a) a:focus {
+    color: #66ffff;
+    text-shadow: 0 0 6px #00ffff, 0 0 12px #00ffff;
+}
+
+
+.instruction {
+    color: #ffffff!important; ;
+    font-size: 14px ;
+    margin-top: 25px!important;
+}
+
+#kc-registration span {
+    color: #ffffff!important;
+}
+
+#kc-info-message:has(.instruction) {
+    justify-items: center!important;
+}
+
+#kc-info-message:has(.instruction) p{
+    font-size: 16px!important;
+}
+
+#kc-info-message:has(.instruction) p:has(a){
+    margin-top: 15px;
+    font-size: 14px!important;
+}
+
+#kc-terms-text {    
+    margin-top: 25px;
+     font-size: 14px;
+}
+
+span[data-kc-msg="irreversibleAction"]   {
+
+margin-left: 30px;
+
+}
+
+.deleteCredentialsClass   {
+
+    color: #ffffff !important;
+    font-weight: 600; /* Forte como um título de alerta */
+    font-size: 1.1em; 
+    text-shadow: 0 0 4px rgba(0, 0, 0, 0.6); /* Sombra escura para profundidade */
+    margin-bottom: 25px; 
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+
+}
+
+.delete-account-text-container {
+    display: flex;
+    flex-direction: column; /* Para empilhar os elementos verticalmente */
+    align-items: center; /* Centraliza horizontalmente (eixo cruzado) */
+    justify-content: center; /* Centraliza verticalmente (eixo principal) */
+    min-height: 200px; /* Define altura para que a centralização vertical seja visível */
+    padding: 20px;
+}
+
+
+/* Título Secundário/Cabeçalho (.delete-implies) */
+.delete-implies {
+    color: #ffffff !important;
+    font-weight: 600; /* Forte como um título de alerta */
+    font-size: 1.2em; 
+    text-shadow: 0 0 4px rgba(0, 0, 0, 0.6); /* Sombra escura para profundidade */
+    margin-bottom: 8px; 
+}
+
+/* Lista de Implicações (.delete-account-ul) */
+.delete-account-ul {
+    color: #ffffff !important; /* Garante que o texto seja branco */
+    list-style: inside disc;
+    margin-left: 0;
+    padding-left: 20px;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    /* Sombra mais suave para o corpo da lista */
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.4); 
+}
+
+/* Parágrafo de Confirmação Final (.delete-account-text) */
+.delete-account-text {
+    color: #ffffff !important;
+    font-size: 1em;
+    font-style: italic; /* Destaca como um aviso final */
+    font-weight: 500;
+    text-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+    margin-top: 15px;
+}
+
+
+.expiredLink {
+    font-size: 14px;
+    transition: all 0.2s;
+    color: #00ffff;
+}
+.expiredLink:hover,
+.expiredLink:focus {
+    color: #00ffff!important;
+    text-shadow: 0 0 6px #00ffff, 0 0 12px #00ffff!important;
+}

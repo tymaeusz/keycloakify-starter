@@ -1,0 +1,111 @@
+/* Lilex – Regular */
+@font-face {
+    font-family: 'Lilex';
+    src: url('./fonts/Lilex-Regular.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Lilex – Italic */
+@font-face {
+    font-family: 'Lilex';
+    src: url('./fonts/Lilex-Italic.otf') format('opentype');
+    font-weight: 400;
+    font-style: italic;
+}
+
+/* Lilex – Thin */
+@font-face {
+    font-family: 'Lilex';
+    src: url('./fonts/Lilex-Thin.otf') format('opentype');
+    font-weight: 100;
+    font-style: normal;
+}
+
+/* Lilex – Thin Italic */
+@font-face {
+    font-family: 'Lilex';
+    src: url('./fonts/Lilex-ThinItalic.otf') format('opentype');
+    font-weight: 100;
+    font-style: italic;
+}
+
+/* Lilex – Extra Light */
+@font-face {
+    font-family: 'Lilex';
+    src: url('./fonts/Lilex-ExtraLight.otf') format('opentype');
+    font-weight: 200;
+    font-style: normal;
+}
+
+/* Lilex – Extra Light Italic */
+@font-face {
+    font-family: 'Lilex';
+    src: url('./fonts/Lilex-ExtraLightItalic.otf') format('opentype');
+    font-weight: 200;
+    font-style: italic;
+}
+
+/* Lilex – Light */
+@font-face {
+    font-family: 'Lilex';
+    src: url('./fonts/Lilex-Light.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+/* Lilex – Light Italic */
+@font-face {
+    font-family: 'Lilex';
+    src: url('./fonts/Lilex-LightItalic.otf') format('opentype');
+    font-weight: 300;
+    font-style: italic;
+}
+
+/* Lilex – Medium */
+@font-face {
+    font-family: 'Lilex';
+    src: url('./fonts/Lilex-Medium.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+/* Lilex – Medium Italic */
+@font-face {
+    font-family: 'Lilex';
+    src: url('./fonts/Lilex-MediumItalic.otf') format('opentype');
+    font-weight: 500;
+    font-style: italic;
+}
+
+/* Lilex – SemiBold */
+@font-face {
+    font-family: 'Lilex';
+    src: url('./fonts/Lilex-SemiBold.otf') format('opentype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+/* Lilex – SemiBold Italic */
+@font-face {
+    font-family: 'Lilex';
+    src: url('./fonts/Lilex-SemiBoldItalic.otf') format('opentype');
+    font-weight: 600;
+    font-style: italic;
+}
+
+/* Lilex – Bold */
+@font-face {
+    font-family: 'Lilex';
+    src: url('./fonts/Lilex-Bold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+/* Lilex – Bold Italic */
+@font-face {
+    font-family: 'Lilex';
+    src: url('./fonts/Lilex-BoldItalic.otf') format('opentype');
+    font-weight: 700;
+    font-style: italic;
+}
